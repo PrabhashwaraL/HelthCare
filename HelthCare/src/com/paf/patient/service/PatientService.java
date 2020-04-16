@@ -23,7 +23,7 @@ public class PatientService {
 			@FormParam("email") String email,
 			@FormParam("password") String password) {
 		
-		String status;
+		String status = null;
 		
 		Patient p = new Patient(nic, firstName, lastName, dob, gender, email, password);
 		
