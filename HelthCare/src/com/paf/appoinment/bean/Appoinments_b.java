@@ -31,6 +31,13 @@ public class Appoinments_b {
 		this.ref_doc = ref_doc;
 	}
 	
+	public String getAppno() {
+		return app_no;
+	}
+	public void setAppno(String app_no) {
+		this.app_no = app_no;
+	}
+	
 	public String getNic() {
 		return nic;
 	}
@@ -52,7 +59,7 @@ public class Appoinments_b {
 	public String getAge() {
 		return age;
 	}
-	public void setAge(String dob) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	public String getGender() {
@@ -61,20 +68,30 @@ public class Appoinments_b {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String appDate() {
+	public String getappDate() {
 		return app_date;
 	}
-	public void appDate(String email) {
+	public void setappDate(String app_date) {
 		this.app_date= app_date;
 	}
 	public String getappTime() {
 		return app_time;
 	}
-	public void setappTime(String password) {
+	public void setappTime(String app_time) {
 		this.app_time = app_time;
 	}
-	
-	
+	public String getReason() {
+		return reason;
+	}
+	public void setReason(String reason) {
+		this.reason = reason;
+	}
+	public String getRefDoc() {
+		return ref_doc;
+	}
+	public void setRefDoc(String ref_doc) {
+		this.ref_doc = ref_doc;
+	}
 	//jhvuygoiajfoaj
 	
 }
