@@ -24,7 +24,6 @@ public class PatientService {
 			@FormParam("password") String password) {
 		
 		String status = null;
-		String oshadee;
 		
 		Patient p = new Patient(nic, firstName, lastName, dob, gender, email, password);
 		
@@ -33,8 +32,24 @@ public class PatientService {
 		return status;
 	}
 	
+	@POST
+	@Path("/patient_login")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String loginPatient(@FormParam("email") String email,
+			@FormParam("password") String password) {
+		
+		String status = "Invalid user";
+		
+		Patient p = new Patient(email, password);
+		
+		status = PatientDAO.patientLogin(p);
+		
+		return status;
+	}
+	
 	@PUT
-	@Path("patient_update")
+	@Path("/patient_update")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updatePatient(String patientData) {
@@ -55,5 +70,14 @@ public class PatientService {
 		return output;
 	}
 	
+	@GET
+	@Path("/patient_list")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Patient getPatientList() {
+		Patient p = new Patient();
+		p.setNic("1234");
+		
+		return p;
+	}
 	
 }

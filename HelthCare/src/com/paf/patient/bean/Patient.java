@@ -1,5 +1,8 @@
 package com.paf.patient.bean;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Patient {
 	
 	private String nic;
@@ -13,6 +16,12 @@ public class Patient {
 	public Patient() {
 		
 	}
+	
+	public Patient(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
+
 	public Patient(String nic, String firstName, String lastName, String dob, String gender, String email,
 			String password) {
 		this.nic = nic;
