@@ -3,6 +3,7 @@ package com.paf.patient.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import com.paf.patient.bean.Patient;
 
@@ -55,6 +56,38 @@ public class PatientDAO {
 		
 	}
 	
+	public static String patientLogin(Patient patient) {
+		
+		String status = "invalid user";
+		
+		try {
+			Connection con = getConnection();
+			
+			String query = "select patientPassword from patient_registration where email = ?";
+			
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setString(1, patient.getEmail());
+			
+			ResultSet rs = ps.executeQuery(query);
+			
+			while(rs.next()) {
+				System.out.println("ddd");
+				 if (patient.getPassword() == rs.getString("patientPassword") ) {
+					 status = "valid user";
+				 }
+			}
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return status;
+		
+	}
+	
 	public static String updatePatient(Patient patient) {
 		String status = null;
 		
@@ -84,5 +117,7 @@ public class PatientDAO {
 		
 		return status;
 	}
+	
+	
 
 }
