@@ -16,7 +16,6 @@ public static Connection getConnection( ) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HealthCare_Appoinment", "root", "root123");
-			//System.out.println("Successfully Connected!");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -24,14 +23,14 @@ public static Connection getConnection( ) {
 		return con;
 	}
 
-public static String addAppoinment(Appoinments_b appoinment) {
+	public static String addAppoinment(Appoinments_b appoinment) {
 	
-	String output = null;
+		String output = null;
 	
 	try {
 		Connection con = getConnection();
 		
-		String query = "insert into  patient_appoinment values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "insert into patient_appoinment(app_no,nic,firstName,lastName,age,gender,app_date,app_time,reason,ref_doc) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement ps = con.prepareStatement(query);
 		

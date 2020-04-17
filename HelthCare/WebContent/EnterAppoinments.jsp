@@ -1,5 +1,31 @@
+<%@page import="com.paf.appoinment.model.Appoinments"%>
+<%@page import="com.paf.appoinment.bean.Appoinments_b"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%
+	if(request.getParameter("app_no") != null ) {
+		String apno = request.getParameter("app_no");
+		String nic = request.getParameter("nic") ; 
+		String firstname = request.getParameter("firstName") ; 
+		String lastname = request.getParameter("lastName") ; 
+		String age = request.getParameter("age") ; 
+		String gender = request.getParameter("gender") ; 
+		String appDate = request.getParameter("app_date") ; 
+		String appTime = request.getParameter("app_time") ; 
+		String reason = request.getParameter("reason") ; 
+		String ref_doc = request.getParameter("ref_doc") ;
+		
+		Appoinments_b ap = new Appoinments_b(apno,nic,firstname,lastname,age,gender,appDate, appTime,reason,ref_doc);
+		
+		Appoinments.addAppoinment(ap);
+	
+	
+	}
+%>
+
+
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -76,7 +102,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                 <div class="form-group row">
                     <label for="nic" class="col-sm-2 col-form-label">App.Time</label>
                     <div class="col-sm-10">
-                        <input type="time" name="app_time" class="form-control">
+                        <input type="text" name="app_time" class="form-control">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -106,6 +132,8 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
             </div>  
         </fieldset>
     </div>
+    
 
 </body>
 </html>
+

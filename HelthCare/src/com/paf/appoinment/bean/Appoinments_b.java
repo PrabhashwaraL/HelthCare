@@ -16,7 +16,7 @@ public class Appoinments_b {
 	public Appoinments_b() {
 		
 	}
-	public Appoinments_b(String app_no,String nic, String firstName, String lastName,String gender, String age, String app_date, String app_time,
+	public Appoinments_b(String app_no,String nic, String firstName, String lastName,String age, String gender, String app_date, String app_time,
 			String reason, String ref_doc) {
 		
 		this.app_no = app_no;
@@ -92,6 +92,6 @@ public class Appoinments_b {
 	public void setRefDoc(String ref_doc) {
 		this.ref_doc = ref_doc;
 	}
-	//jhvuygoiajfoaj
+
 	
 }
