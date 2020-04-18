@@ -6,7 +6,7 @@ import com.paf.patient.model.PatientDAO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import com.google.gson.*;
+//import com.google.gson.*;
 
 @Path("/patient")
 public class PatientService {
@@ -60,8 +60,6 @@ public class PatientService {
 			@FormParam("email") String email,
 			@FormParam("password") String password) {
 		
-		String status = null;
-		
 		Patient p = new Patient(nic, firstName, lastName, dob, gender, email, password);
 		
 		String output = PatientDAO.updatePatient(p);
@@ -80,13 +78,18 @@ public class PatientService {
 	}
 	
 	@DELETE
-	@Path("hospitalName")
-	@Consumes(MediaType.APPLICATION_ATOM_XML)
+	@Path("/delete_patient")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String deletePatient(String nic) {
-		String status = null;
+	public String deletePatient(@FormParam("nic") String nic) {
 		
-		return null;
+		Patient p = new Patient();
+		
+		p.setNic(nic);
+		
+		String output = PatientDAO.deletePatient(p);
+		
+		return output;
 	}
 	
 }
