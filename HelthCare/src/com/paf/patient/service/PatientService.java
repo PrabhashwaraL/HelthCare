@@ -69,12 +69,11 @@ public class PatientService {
 	
 	@GET
 	@Path("/patient_list")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Patient getPatientList() {
-		Patient p = new Patient();
-		p.setNic("1234");
+	@Produces(MediaType.TEXT_HTML)
+	public String getPatientList() {
 		
-		return p;
+		return PatientDAO.patientList();
+		
 	}
 	
 	@DELETE
