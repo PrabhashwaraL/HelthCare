@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import com.paf.appoinment.bean.Appoinments_b;
 
 
+
 public class Appoinments {
 	
 public static Connection getConnection( ) {
@@ -59,7 +60,37 @@ public static Connection getConnection( ) {
 	return output;
 	
 }
+	public static String updateAppoinments(Appoinments_b appoinment) {
+		String status = null;
+		
+		try {
+			Connection con = getConnection();
+			
+			String queary = "update patient_appoinment set firstName=?, lastName=?, age=?, gender=?"
+					+ "app_date=?, app_time=?, reason=?, ref_doc=? where app_no=?";
+			
+			PreparedStatement ps = con.prepareStatement(queary);
+			
+			ps.setString(1, appoinment.getFirstName());
+			ps.setString(2, appoinment.getLastName());
+			ps.setString(3, appoinment.getAge());
+			ps.setString(4, appoinment.getGender());
+			ps.setString(5, appoinment.getappDate());
+			ps.setString(6, appoinment.getappTime());
+			ps.setString(7, appoinment.getReason());
+			ps.setString(8, appoinment.getRefDoc());
+			
+			ps.executeUpdate();
+			
+			status = "Appoinment Update Successfully";
+		} catch (Exception e) {
+			e.printStackTrace();
+			status = "Error in update process";
+		}
+		
+		return status;
 	
 	
+	}	
 
 }
