@@ -10,6 +10,8 @@
 
 <h1>Helth Care</h1>
 <a href="http://localhost:8080/HelthCare/api/patient/patient_registration">Patient</a>
-
+<br>
+<a href="http://localhost:8080/HelthCare/api/appoinment/patient_appoinment">Appoinment</a>
+<br>
 </body>
 </html>
