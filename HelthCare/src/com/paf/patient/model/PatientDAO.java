@@ -94,7 +94,7 @@ public class PatientDAO {
 		try {
 			Connection con = getConnection();
 			
-			String queary = "update patient_registration set firstName=?, lastName=?, dob=?, gender=?"
+			String queary = "update patient_registration set firstName=?, lastName=?, dob=?, gender=?,"
 					+ "email=?, patientPassword=? where nic=?";
 			
 			PreparedStatement ps = con.prepareStatement(queary);
@@ -118,6 +118,29 @@ public class PatientDAO {
 		return status;
 	}
 	
+	public static String deletePatient(Patient patient) {
+		String status = null;
+		
+		try {
+			Connection con = getConnection();
+			
+			String query = "delete from patient_registration where nic=?";
+			
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setString(1, patient.getNic());
+			
+			ps.execute();
+			
+			status = "Patient deleted successfuly";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			status = "Error in deleting process.";
+		}
+		
+		return status;
+		
+	}
 	
-
 }

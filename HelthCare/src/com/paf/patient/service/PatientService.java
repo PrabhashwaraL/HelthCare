@@ -6,7 +6,7 @@ import com.paf.patient.model.PatientDAO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
-import com.google.gson.*;
+//import com.google.gson.*;
 
 @Path("/patient")
 public class PatientService {
@@ -54,18 +54,15 @@ public class PatientService {
 	
 	@PUT
 	@Path("/patient_update")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String updatePatient(String patientData) {
-		JsonObject patient = new JsonParser().parse(patientData).getAsJsonObject();
-		
-		String nic = patient.get("nic").getAsString();
-		String firstName = patient.get("firstName").getAsString();
-		String lastName = patient.get("lastName").getAsString();
-		String dob = patient.get("dob").getAsString();
-		String gender = patient.get("gender").getAsString();
-		String email = patient.get("email").getAsString();
-		String password = patient.get("password").getAsString();
+	public String updatePatient(@FormParam("nic") String nic,
+			@FormParam("firstName") String firstName,
+			@FormParam("lastName") String lastName,
+			@FormParam("dob") String dob,
+			@FormParam("gender") String gender,
+			@FormParam("email") String email,
+			@FormParam("password") String password) {
 		
 		Patient p = new Patient(nic, firstName, lastName, dob, gender, email, password);
 		
@@ -82,6 +79,21 @@ public class PatientService {
 		p.setNic("1234");
 		
 		return p;
+	}
+	
+	@DELETE
+	@Path("/delete_patient")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deletePatient(@FormParam("nic") String nic) {
+		
+		Patient p = new Patient();
+		
+		p.setNic(nic);
+		
+		String output = PatientDAO.deletePatient(p);
+		
+		return output;
 	}
 	
 }

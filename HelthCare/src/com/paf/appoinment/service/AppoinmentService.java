@@ -1,6 +1,7 @@
 package com.paf.appoinment.service;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -12,6 +13,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.paf.appoinment.bean.Appoinments_b;
 import com.paf.appoinment.model.Appoinments;
+
+
 
 
 
@@ -52,20 +55,17 @@ public class AppoinmentService {
 		@Path("/appoinment_update")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
-		public String updateAppoinments(String appData) {
-			JsonObject appoinment = new JsonParser().parse(appData).getAsJsonObject();
-			
-			String app_no =appoinment.get("app_no").getAsString();
-
-			String nic = appoinment.get("nic").getAsString();
-			String firstName = appoinment.get("firstName").getAsString();
-			String lastName = appoinment.get("lastName").getAsString();
-			String age = appoinment.get("age").getAsString();
-			String gender = appoinment.get("gender").getAsString();
-			String app_date = appoinment.get("app_date").getAsString();
-			String app_time = appoinment.get("app_time").getAsString();
-			String reason = appoinment.get("reason").getAsString();
-			String ref_doc = appoinment.get("ref_doc").getAsString();
+		public String updateAppoinments
+		(@FormParam("app_no") String app_no,
+				@FormParam("nic") String nic,
+				@FormParam("firstName") String firstName,
+				@FormParam("lastName") String lastName,
+				@FormParam("age") String age,
+				@FormParam("gender") String gender,
+				@FormParam("app_date") String app_date,
+				@FormParam("app_time") String app_time,
+				@FormParam("reason") String reason,
+				@FormParam("ref_doc") String ref_doc) {
 			
 			Appoinments_b app = new Appoinments_b(app_no, nic, firstName, lastName, age, gender, app_date, app_time, reason, ref_doc);
 			
@@ -75,6 +75,19 @@ public class AppoinmentService {
 		}
 		
 		
-	
+		@DELETE
+		@Path("/delete_appoinment")
+		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+		@Produces(MediaType.TEXT_PLAIN)
+		public String deleteAppoinment(@FormParam("app_no") String app_no) {
+			
+			Appoinments_b app = new Appoinments_b();
+			
+			app.setAppno(app_no);
+			
+			String output = Appoinments.deleteAppoinment(app);
+			
+			return output;
+		}
 
 }

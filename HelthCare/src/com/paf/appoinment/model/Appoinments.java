@@ -8,6 +8,7 @@ import com.paf.appoinment.bean.Appoinments_b;
 
 
 
+
 public class Appoinments {
 	
 public static Connection getConnection( ) {
@@ -93,5 +94,31 @@ public static Connection getConnection( ) {
 	
 	
 	}	
+	
+	
+	public static String deleteAppoinment(Appoinments_b appoinment) {
+		String status = null;
+		
+		try {
+			Connection con = getConnection();
+			
+			String query = "delete from patient_appoinment where app_no=?";
+			
+			PreparedStatement ps = con.prepareStatement(query);
+			
+			ps.setString(1, appoinment.getAppno());
+			
+			ps.execute();
+			
+			status = "Appoinment deleted successfuly";
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			status = "Error in deleting process.";
+		}
+		
+		return status;
+		
+	}
 
 }
