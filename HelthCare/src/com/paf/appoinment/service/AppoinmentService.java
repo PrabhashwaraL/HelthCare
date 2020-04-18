@@ -12,8 +12,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.paf.appoinment.bean.Appoinments_b;
 import com.paf.appoinment.model.Appoinments;
-import com.paf.patient.bean.Patient;
-import com.paf.patient.model.PatientDAO;
+
+
 
 
 
@@ -32,8 +32,8 @@ public class AppoinmentService {
 				@FormParam("lastName") String lastName,
 				@FormParam("age") String age,
 				@FormParam("gender") String gender,
-				@FormParam("email") String app_date,
-				@FormParam("password") String app_time,
+				@FormParam("app_date") String app_date,
+				@FormParam("app_time") String app_time,
 				@FormParam("reason") String reason,
 				@FormParam("ref_doc") String ref_doc) {
 			
@@ -52,23 +52,29 @@ public class AppoinmentService {
 		@Path("/appoinment_update")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.TEXT_PLAIN)
-		public String updatePatient(String patientData) {
-			JsonObject patient = new JsonParser().parse(patientData).getAsJsonObject();
+		public String updateAppoinments(String appData) {
+			JsonObject appoinment = new JsonParser().parse(appData).getAsJsonObject();
 			
-			String nic = patient.get("nic").getAsString();
-			String firstName = patient.get("firstName").getAsString();
-			String lastName = patient.get("lastName").getAsString();
-			String dob = patient.get("dob").getAsString();
-			String gender = patient.get("gender").getAsString();
-			String email = patient.get("email").getAsString();
-			String password = patient.get("password").getAsString();
+			String app_no =appoinment.get("app_no").getAsString();
+
+			String nic = appoinment.get("nic").getAsString();
+			String firstName = appoinment.get("firstName").getAsString();
+			String lastName = appoinment.get("lastName").getAsString();
+			String age = appoinment.get("age").getAsString();
+			String gender = appoinment.get("gender").getAsString();
+			String app_date = appoinment.get("app_date").getAsString();
+			String app_time = appoinment.get("app_time").getAsString();
+			String reason = appoinment.get("reason").getAsString();
+			String ref_doc = appoinment.get("ref_doc").getAsString();
 			
-			Patient p = new Patient(nic, firstName, lastName, dob, gender, email, password);
+			Appoinments_b app = new Appoinments_b(app_no, nic, firstName, lastName, age, gender, app_date, app_time, reason, ref_doc);
 			
-			String output = PatientDAO.updatePatient(p);
+			String output = Appoinments.updateAppoinments(app);
 			
 			return output;
 		}
+		
+		
 	
 
 }

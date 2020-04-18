@@ -31,7 +31,7 @@ public static Connection getConnection( ) {
 	try {
 		Connection con = getConnection();
 		
-		String query = "insert into patient_appoinment(app_no,nic,firstName,lastName,age,gender,app_date,app_time,reason,ref_doc) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "insert into patient_appoinment(app_no,nic,firstName,lastName,age,gender,app_date,app_time,reason,ref_doc)" + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement ps = con.prepareStatement(query);
 		
@@ -66,28 +66,29 @@ public static Connection getConnection( ) {
 		try {
 			Connection con = getConnection();
 			
-			String queary = "update patient_appoinment set firstName=?, lastName=?, age=?, gender=?"
-					+ "app_date=?, app_time=?, reason=?, ref_doc=? where app_no=?";
+			String queary = "update patient_appoinment set nic=?, firstName=?, lastName=?, age=?, gender=?, app_date=?, app_time=?, reason=?, ref_doc=? where app_no=?";
 			
 			PreparedStatement ps = con.prepareStatement(queary);
 			
-			ps.setString(1, appoinment.getFirstName());
-			ps.setString(2, appoinment.getLastName());
-			ps.setString(3, appoinment.getAge());
-			ps.setString(4, appoinment.getGender());
-			ps.setString(5, appoinment.getappDate());
-			ps.setString(6, appoinment.getappTime());
-			ps.setString(7, appoinment.getReason());
-			ps.setString(8, appoinment.getRefDoc());
+			ps.setString(1, appoinment.getNic());
+			ps.setString(2, appoinment.getFirstName());
+			ps.setString(3, appoinment.getLastName());
+			ps.setString(4, appoinment.getAge());
+			ps.setString(5, appoinment.getGender());
+			ps.setString(6, appoinment.getappDate());
+			ps.setString(7, appoinment.getappTime());
+			ps.setString(8, appoinment.getReason());
+			ps.setString(9, appoinment.getRefDoc());
+			ps.setString(10, appoinment.getAppno());
 			
+
 			ps.executeUpdate();
 			
 			status = "Appoinment Update Successfully";
 		} catch (Exception e) {
 			e.printStackTrace();
-			status = "Error in update process";
-		}
-		
+		status = "Error in update process";
+		}		
 		return status;
 	
 	
