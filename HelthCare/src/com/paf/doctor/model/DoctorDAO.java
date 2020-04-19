@@ -17,7 +17,7 @@ public class DoctorDAO {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare_doctor", "root", "root");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare_doctor", "root", "admin123");
 		
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -150,7 +150,7 @@ public class DoctorDAO {
 		
 	}
 	
-	public static String doctorList() {
+	public static String doctorList(String Pnic) {
 		
 		String output = "";
 		
@@ -190,13 +190,17 @@ public class DoctorDAO {
 				output += "<td>" + email + "</td>";
 				output += "<td>" + password + "</td>";
 				
-				output += "</tr></table></body>";
+				output += "<td><a href=\"http://localhost:8080/HelthCare/api/appoinment/patient_appoinment2/" + Pnic + "/" + nic + "\"" + "target=\"_blank\">Available Doctores</a></td>";
+				
+				output += "</tr>";
 
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		output += "</table></body>";
 		
 		return output;
 	}

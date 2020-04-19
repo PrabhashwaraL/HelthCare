@@ -30,7 +30,31 @@ public class PatientService {
 		status = PatientDAO.registerPatient(p);
 		
 		return "<h2>" + status + "</h2><br><br>" + 
-		"<a href=\"http://localhost:8080/HelthCare/api/doctor/doctor_list\">Available Doctores</a>";
+		"<a href=\"http://localhost:8080/HelthCare/api/doctor/doctor_list\" target=\"_blank\">Available Doctores</a>";
+	}
+	
+	@POST
+	@Path("/patient_registration_and_selectDoctor")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_HTML)
+	public String registerPatient2(@FormParam("nic") String nic,
+			@FormParam("firstName") String firstName,
+			@FormParam("lastName") String lastName,
+			@FormParam("dob") String dob,
+			@FormParam("gender") String gender,
+			@FormParam("email") String email,
+			@FormParam("password") String password) {
+		
+		String status = null;
+		
+		String patientNIC = "/" + nic + "\"";
+		
+		Patient p = new Patient(nic, firstName, lastName, dob, gender, email, password);
+		
+		status = PatientDAO.registerPatient(p);
+		
+		return "<h2>" + status + "</h2><br><br>" + 
+		"<a href=\"http://localhost:8080/HelthCare/api/doctor/doctor_list" + patientNIC + ">Available Doctores</a>";
 	}
 	
 	@POST

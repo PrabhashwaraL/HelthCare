@@ -49,7 +49,7 @@ public class doctorService {
 	
 	@PUT
 	@Path("/doctor_update")
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateDoctor(
 			@FormParam("nic") String nic,
@@ -70,11 +70,11 @@ public class doctorService {
 	}
 	
 	@GET
-	@Path("/doctor_list")
+	@Path("/doctor_list/{patientID}")
 	@Produces(MediaType.TEXT_HTML)
-	public String getDoctorList() {
+	public String getDoctorList(@PathParam("patientID") String nic) {
 		
-		return DoctorDAO.doctorList();
+		return DoctorDAO.doctorList(nic);
 		
 	}
 	
