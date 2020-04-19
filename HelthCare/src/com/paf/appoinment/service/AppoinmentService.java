@@ -3,6 +3,7 @@ package com.paf.appoinment.service;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -13,6 +14,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.paf.appoinment.bean.Appoinments_b;
 import com.paf.appoinment.model.Appoinments;
+
 
 
 
@@ -88,6 +90,15 @@ public class AppoinmentService {
 			String output = Appoinments.deleteAppoinment(app);
 			
 			return output;
+		}
+		
+		@GET
+		@Path("/appoinment_list")
+		@Produces(MediaType.TEXT_HTML)
+		public String getAppoinmentList() {
+			
+			return Appoinments.AppoinmentList();
+			
 		}
 
 }

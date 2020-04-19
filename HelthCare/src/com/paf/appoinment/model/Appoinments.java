@@ -3,6 +3,8 @@ package com.paf.appoinment.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import com.paf.appoinment.bean.Appoinments_b;
 
@@ -119,6 +121,60 @@ public static Connection getConnection( ) {
 		
 		return status;
 		
+	}
+	
+public static String AppoinmentList() {
+		
+		String output = "";
+		
+		try {
+			Connection con = getConnection();
+			
+			output += "<head>\r\n" + 
+					"<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css\"\r\n" + 
+					"integrity=\"sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh\" crossorigin=\"anonymous\">\r\n" + 
+					"</head>" + 
+					"<body>" +
+					"<table border=\"1\"><tr><th>App.No</th>" + "<th>NIC</th><th>First Name</th>" + "<th>Last Name</th>" +
+					"<th>Age</th>" + "<th>Gender</th>" + "<th>App.Date</th>" + "<th>App.Time</th>" + "<th>Reason</th>" + "<th>Ref.Doc</th>" +
+					"</body>";
+			
+			String query = "select * from patient_appoinment";
+			Statement statement = con.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			
+			while(rs.next()) {
+				String app_no = rs.getString("app_no");
+				String nic = rs.getString("nic");
+				String firstName = rs.getString("firstName");
+				String lastName = rs.getString("lastName");
+				String age = rs.getString("age");
+				String gender = rs.getString("gender");
+				String app_date = rs.getString("app_date");
+				String app_time = rs.getString("app_time");
+				String reason = rs.getString("reason");
+				String ref_doc = rs.getString("ref_doc");
+				
+				output +="<tr><td>" + app_no + "</td>";
+				output += "<td>" + nic + "</td>";
+				output += "<td>" + firstName + "</td>";
+				output += "<td>" + lastName + "</td>";
+				output += "<td>" + age + "</td>";
+				output += "<td>" + gender + "</td>";
+				output += "<td>" + app_date + "</td>";
+				output += "<td>" + app_time + "</td>";
+				output += "<td>" + reason + "</td>";
+				output += "<td>" + ref_doc + "</td>";
+				
+				
+				output += "</tr></table>";
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return output;
 	}
 
 }
