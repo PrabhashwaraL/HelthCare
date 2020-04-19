@@ -13,6 +13,20 @@
 		<servlet-name>Patient Services</servlet-name>
 		<url-pattern>/patientService/*</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Appoinment Services</servlet-name>
+		<servlet-class>
+			com.sun.jersey.spi.container.servlet.ServletContainer
+		</servlet-class>
+			<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Appoinment Services</servlet-name>
+		<url-pattern>/appoinmentService/*</url-pattern>
+	</servlet-mapping>
+	
+	
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
