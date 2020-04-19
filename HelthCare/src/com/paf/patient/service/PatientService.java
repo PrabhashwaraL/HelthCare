@@ -14,7 +14,7 @@ public class PatientService {
 	@POST
 	@Path("/patient_registration")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.TEXT_HTML)
 	public String registerPatient(@FormParam("nic") String nic,
 			@FormParam("firstName") String firstName,
 			@FormParam("lastName") String lastName,
@@ -29,7 +29,8 @@ public class PatientService {
 		
 		status = PatientDAO.registerPatient(p);
 		
-		return status;
+		return "<h2>" + status + "</h2><br><br>" + 
+		"<a href=\"http://localhost:8080/HelthCare/api/doctor/doctor_list\">Available Doctores</a>";
 	}
 	
 	@POST

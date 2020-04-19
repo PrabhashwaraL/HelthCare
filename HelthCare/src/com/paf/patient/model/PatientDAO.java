@@ -59,7 +59,7 @@ public class PatientDAO {
 	
 	public static String patientLogin(Patient patient) {
 		
-		String status = "invalid user";
+		String status = "Invalid";
 		
 		try {
 			Connection con = getConnection();
@@ -70,7 +70,9 @@ public class PatientDAO {
 			
 			ps.setString(1, patient.getEmail());
 			
-			ResultSet rs = ps.executeQuery(query);
+			Statement statement = con.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			//ResultSet rs = ps.execute(query);
 			
 			while(rs.next()) {
 				System.out.println("ddd");
