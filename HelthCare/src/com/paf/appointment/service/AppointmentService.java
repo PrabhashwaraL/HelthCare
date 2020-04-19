@@ -59,7 +59,7 @@ public class AppointmentService {
 		
 		@PUT
 		@Path("/appoinment_update")
-		@Consumes(MediaType.APPLICATION_JSON)
+		@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 		@Produces(MediaType.TEXT_PLAIN)
 		public String updateAppoinments
 		(@FormParam("app_no") String app_no,

@@ -185,12 +185,15 @@ public static String AppoinmentList() {
 				output += "<td>" + ref_doc + "</td>";
 				
 				
-				output += "</tr></table>";
+				output += "</tr>";
+						
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
+		output += "</table></body>";
 		
 		return output;
 	}
