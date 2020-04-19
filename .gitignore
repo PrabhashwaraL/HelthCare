@@ -2,4 +2,10 @@
 /.metadata
 .settings
 /Interfaces
-/RemoteSystemsTempFiles
+/RemoteSystemsTempFiles/
+HelthCare/.settings
+HelthCare/.project
+HelthCare/pom.xml
+HelthCare/target
+HelthCare/WebContent/META-INF
+HelthCare/WebContent/WEB-INF
