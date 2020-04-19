@@ -1,4 +1,4 @@
-package com.paf.appoinment.service;
+package com.paf.appointment.service;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -12,8 +12,8 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.paf.appoinment.bean.Appoinments_b;
-import com.paf.appoinment.model.Appoinments;
+import com.paf.appointment.bean.Appointments_b;
+import com.paf.appointment.model.Appointments;
 
 
 
@@ -24,7 +24,9 @@ import com.paf.appoinment.model.Appoinments;
 
 @Path("/appoinment")
 
-public class AppoinmentService {
+//Inserting appoinments of a Patient
+//Addappoinments service
+public class AppointmentService {
 		
 		@POST
 		@Path("/patient_appoinment")
@@ -45,13 +47,15 @@ public class AppoinmentService {
 			String status = null;
 			
 			
-			Appoinments_b app = new Appoinments_b(app_no, nic, firstName, lastName, age, gender, app_date, app_time, reason, ref_doc);
+			Appointments_b app = new Appointments_b(app_no, nic, firstName, lastName, age, gender, app_date, app_time, reason, ref_doc);
 			
-			status = Appoinments.addAppoinment(app);
+			status = Appointments.addAppoinment(app);
 			
 			return status;
 		}
 		
+		//Update patients appoinments
+		//updateAppointments service
 		
 		@PUT
 		@Path("/appoinment_update")
@@ -69,13 +73,16 @@ public class AppoinmentService {
 				@FormParam("reason") String reason,
 				@FormParam("ref_doc") String ref_doc) {
 			
-			Appoinments_b app = new Appoinments_b(app_no, nic, firstName, lastName, age, gender, app_date, app_time, reason, ref_doc);
+			Appointments_b app = new Appointments_b(app_no, nic, firstName, lastName, age, gender, app_date, app_time, reason, ref_doc);
 			
-			String output = Appoinments.updateAppoinments(app);
+			String output = Appointments.updateAppoinments(app);
 			
 			return output;
 		}
 		
+		
+		//Delete patient appointments
+		//deleteAppointment Service
 		
 		@DELETE
 		@Path("/delete_appoinment")
@@ -83,21 +90,24 @@ public class AppoinmentService {
 		@Produces(MediaType.TEXT_PLAIN)
 		public String deleteAppoinment(@FormParam("app_no") String app_no) {
 			
-			Appoinments_b app = new Appoinments_b();
+			Appointments_b app = new Appointments_b();
 			
 			app.setAppno(app_no);
 			
-			String output = Appoinments.deleteAppoinment(app);
+			String output = Appointments.deleteAppoinment(app);
 			
 			return output;
 		}
 		
+		
+		//Show inserted data in the database
+		//getAppointment Service
 		@GET
 		@Path("/appoinment_list")
 		@Produces(MediaType.TEXT_HTML)
 		public String getAppoinmentList() {
 			
-			return Appoinments.AppoinmentList();
+			return Appointments.AppoinmentList();
 			
 		}
 

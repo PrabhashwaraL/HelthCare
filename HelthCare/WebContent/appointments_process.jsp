@@ -1,5 +1,5 @@
-<%@page import="com.paf.appoinment.model.Appoinments"%>
-<jsp:useBean id="appoinment" class="com.paf.appoinment.bean.Appoinments_b"></jsp:useBean>
+<%@page import="com.paf.appointment.model.Appointments"%>
+<jsp:useBean id="appoinment" class="com.paf.appointment.bean.Appointments_b"></jsp:useBean>
 <jsp:setProperty property="*" name="appoinment"/>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,13 +12,11 @@
 <body>
 
 <%
-		String status = Appoinments.addAppoinment(appoinment);
+	String status = Appointments.addAppoinment(appoinment);
 
 		session.setAttribute("patient_addAppoinment_status", status);
 		
 		response.sendRedirect("EnterAppoinments.jsp");
-		
-	
 %>
 
 </body>

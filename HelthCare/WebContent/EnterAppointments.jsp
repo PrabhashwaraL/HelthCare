@@ -1,27 +1,27 @@
-<%@page import="com.paf.appoinment.model.Appoinments"%>
-<%@page import="com.paf.appoinment.bean.Appoinments_b"%>
+<%@page import="com.paf.appointment.model.Appointments"%>
+<%@page import="com.paf.appointment.bean.Appointments_b"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <%
-	if(request.getParameter("app_no") != null ) {
-		String apno = request.getParameter("app_no");
-		String nic = request.getParameter("nic") ; 
-		String firstname = request.getParameter("firstName") ; 
-		String lastname = request.getParameter("lastName") ; 
-		String age = request.getParameter("age") ; 
-		String gender = request.getParameter("gender") ; 
-		String appDate = request.getParameter("app_date") ; 
-		String appTime = request.getParameter("app_time") ; 
-		String reason = request.getParameter("reason") ; 
-		String ref_doc = request.getParameter("ref_doc") ;
-		
-		Appoinments_b ap = new Appoinments_b(apno,nic,firstname,lastname,age,gender,appDate, appTime,reason,ref_doc);
-		
-		Appoinments.addAppoinment(ap);
-	
-	
-	}
-%>
+    	if(request.getParameter("app_no") != null ) {
+        		String apno = request.getParameter("app_no");
+        		String nic = request.getParameter("nic") ; 
+        		String firstname = request.getParameter("firstName") ; 
+        		String lastname = request.getParameter("lastName") ; 
+        		String age = request.getParameter("age") ; 
+        		String gender = request.getParameter("gender") ; 
+        		String appDate = request.getParameter("app_date") ; 
+        		String appTime = request.getParameter("app_time") ; 
+        		String reason = request.getParameter("reason") ; 
+        		String ref_doc = request.getParameter("ref_doc") ;
+        		
+        		Appointments_b ap = new Appointments_b(apno,nic,firstname,lastname,age,gender,appDate, appTime,reason,ref_doc);
+        		
+        		Appointments.addAppoinment(ap);
+        	
+        	
+        	}
+    %>
 
 
 

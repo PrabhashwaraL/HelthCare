@@ -1,6 +1,6 @@
-package com.paf.appoinment.bean;
+package com.paf.appointment.bean;
 
-public class Appoinments_b {
+public class Appointments_b {
 
 	private String app_no ;            
 	private String nic;
@@ -13,10 +13,10 @@ public class Appoinments_b {
 	private String reason;
 	private String ref_doc;
 	
-	public Appoinments_b() {
+	public Appointments_b() {
 		
 	}
-	public Appoinments_b(String app_no,String nic, String firstName, String lastName,String age, String gender, String app_date, String app_time,
+	public Appointments_b(String app_no,String nic, String firstName, String lastName,String age, String gender, String app_date, String app_time,
 			String reason, String ref_doc) {
 		
 		this.app_no = app_no;

@@ -1,4 +1,4 @@
-package com.paf.appoinment.model;
+package com.paf.appointment.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,12 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import com.paf.appoinment.bean.Appoinments_b;
+import com.paf.appointment.bean.Appointments_b;
 
 
 
 
-public class Appoinments {
+public class Appointments {
+	
+	//connection between MySQL database
 	
 public static Connection getConnection( ) {
 		
@@ -27,13 +29,19 @@ public static Connection getConnection( ) {
 		return con;
 	}
 
-	public static String addAppoinment(Appoinments_b appoinment) {
+
+
+
+	//Method addAppoinment to call addApppointment service
+
+	public static String addAppoinment(Appointments_b appoinment) {
 	
 		String output = null;
 	
 	try {
 		Connection con = getConnection();
 		
+		//sql query to insert data
 		String query = "insert into patient_appoinment(app_no,nic,firstName,lastName,age,gender,app_date,app_time,reason,ref_doc)" + "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		PreparedStatement ps = con.prepareStatement(query);
@@ -62,13 +70,20 @@ public static Connection getConnection( ) {
 	
 	return output;
 	
+	
 }
-	public static String updateAppoinments(Appoinments_b appoinment) {
+	
+	
+	//Method updateApoointments to call appointment_update service
+	
+	
+	public static String updateAppoinments(Appointments_b appoinment) {
 		String status = null;
 		
 		try {
 			Connection con = getConnection();
 			
+			//sql query to update database
 			String queary = "update patient_appoinment set nic=?, firstName=?, lastName=?, age=?, gender=?, app_date=?, app_time=?, reason=?, ref_doc=? where app_no=?";
 			
 			PreparedStatement ps = con.prepareStatement(queary);
@@ -98,7 +113,10 @@ public static Connection getConnection( ) {
 	}	
 	
 	
-	public static String deleteAppoinment(Appoinments_b appoinment) {
+	
+	
+	
+	public static String deleteAppoinment(Appointments_b appoinment) {
 		String status = null;
 		
 		try {
