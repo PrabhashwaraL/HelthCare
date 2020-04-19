@@ -16,7 +16,8 @@ public class DoctorDAO {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare_doctor", "root", "admin123");
+
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthcare_doctor", "root", "root");
 		
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -189,14 +190,13 @@ public class DoctorDAO {
 				output += "<td>" + email + "</td>";
 				output += "<td>" + password + "</td>";
 				
-				output += "</tr>";
+				output += "</tr></table></body>";
+
 			}
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		
-		output += "</table></body>";
 		
 		return output;
 	}
