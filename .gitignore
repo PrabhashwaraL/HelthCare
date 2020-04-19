@@ -2,3 +2,15 @@
 /.metadata
 .settings
 /Interfaces
+.settings
+src/com/paf/patient
+src/com/paf/payment
+target
+WebContent/META-INF
+WebContent/WEB-INF
+WebContent/patient_register_process.jsp
+WebContent/patient-register.jsp
+WebContent/payment_register.jsp
+WebContent/payment_register_process.jsp
+.project
+pom.xml
